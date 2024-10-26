@@ -12,15 +12,16 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user),
         });
+
         const message = await response.text();
         document.getElementById('loginMessage').textContent = message;
 
         if (message === 'Login successful!') {
-            window.location.href = `profile.html?username=${user.username}`;
+            window.location.href = 'recent.html';
         }
 
     } catch (error) {
         console.error('Error logging in:', error);
-        document.getElementById('loginMessage').textContent = 'Error logging in. Please try again.';
+        document.getElementById('loginMessage').textContent = 'Failed to log in. Please try again.';
     }
 });
