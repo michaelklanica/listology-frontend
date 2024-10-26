@@ -18,11 +18,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         if (message === 'Login successful!') {
             localStorage.setItem('username', user.username);
-            window.location.href = 'my-lists.html'; // Redirect after login
+            window.location.href = 'my-lists.html';
         }
-
     } catch (error) {
         console.error('Error logging in:', error);
-        document.getElementById('loginMessage').textContent = 'Failed to log in. Please try again.';
+        document.getElementById('loginMessage').textContent = 'Error logging in. Please try again.';
     }
 });
