@@ -1,27 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     const username = localStorage.getItem('username');
 
-    // Ensure username exists and is valid
-    if (username && username.trim() !== "") {
-        document.getElementById('greeting').textContent = `Welcome, ${username}!`;
-    } else {
-        console.warn("No valid username found. Redirecting to index.html...");
+    // Only redirect if the username is null (not just empty)
+    if (username === null) {
+        console.warn("No username found. Redirecting to index.html...");
         window.location.href = 'index.html';
+    } else {
+        document.getElementById('greeting').textContent = `Welcome, ${username}!`;
     }
 
     // Logout functionality
     document.getElementById('logoutBtn').addEventListener('click', () => {
         localStorage.removeItem('username');
+        console.log('Logout triggered');
         window.location.href = 'index.html';
     });
 
-    // Mock recent lists data
+    // Mock data for recent lists
     const mockRecentLists = [
         { id: 1, title: "Top Movies of 2024", description: "Must-watch films.", category: "Movies", author: "John Doe", timestamp: "2024-10-26 14:35" },
-        { id: 2, title: "Best Albums of 2024", description: "Best albums this year.", category: "Music", author: "Jane Smith", timestamp: "2024-10-25 10:00" }
+        { id: 2, title: "Best Albums of 2024", description: "The best albums this year.", category: "Music", author: "Jane Smith", timestamp: "2024-10-25 10:00" }
     ];
 
-    // Populate the lists
+    // Populate recent lists
     const container = document.getElementById('recentListContainer');
     if (container) {
         mockRecentLists.forEach(list => {

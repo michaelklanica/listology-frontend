@@ -17,7 +17,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         document.getElementById('loginMessage').textContent = message;
 
         if (message === 'Login successful!') {
-            window.location.href = 'recent.html';
+            localStorage.setItem('username', user.username);
+            window.location.href = 'recent.html'; // Redirect after login
         }
 
     } catch (error) {
